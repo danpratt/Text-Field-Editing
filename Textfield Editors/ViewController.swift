@@ -13,9 +13,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     
+    let textAttributes: [String: Any] = [
+        NSStrokeColorAttributeName: UIColor.black,
+        NSForegroundColorAttributeName: UIColor.white,
+        NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        NSStrokeWidthAttributeName: -3.0,
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        topTextField.defaultTextAttributes = textAttributes
+        bottomTextField.defaultTextAttributes = textAttributes
+        topTextField.textAlignment = .center
+        topTextField.text = "TOP".capitalized
+        bottomTextField.text = "BOTTOM".capitalized
+        bottomTextField.textAlignment = .center
         topTextField.delegate = self
         bottomTextField.delegate = self
     }
@@ -26,7 +39,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField.text == "TOP" || textField.text == "BOTTOM" {
+        if textField.text == "TOP".capitalized || textField.text == "BOTTOM".capitalized {
             textField.text = ""
         }
     }
@@ -35,6 +48,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+
 
 
 }
